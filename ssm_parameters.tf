@@ -19,14 +19,15 @@ resource "aws_ssm_parameter" "site-name" {
 data "aws_iam_policy_document" "ssm_access" {
   statement {
     effect    = "Allow"
-    actions   = ["ssm:Getparameter"]
-    resources = [aws_ssm_parameter.host-list, aws_ssm_parameter.site-name]
+
+    actions   = ["ssm:GetParameter"]
+    resources = [aws_ssm_parameter.host-list.arn, aws_ssm_parameter.site-name.arn]
   }
 }
 
 resource "aws_iam_policy" "ssm_access" {
   name   = "${local.name_prefix}-ssm-access"
-  policy = data.aws_iam_policy_document.ssm_access
+  policy = data.aws_iam_policy_document.ssm_access.json
 }
 
 resource "aws_iam_role_policy_attachment" "ssm_access" {
