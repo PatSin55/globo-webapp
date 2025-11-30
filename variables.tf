@@ -47,4 +47,8 @@ variable "tfe_workspace_name" {
   description = "(Required) worskpace where the data come from"
 }
 
+variable "playbook_repository" {
+  type        = string
+  description = "(Required) the url of the repo of the playbook"
+}
 
