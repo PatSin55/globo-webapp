@@ -11,7 +11,7 @@ resource "aws_ssm_parameter" "host-list" {
 }
 
 resource "aws_ssm_parameter" "site-name" {
-  name  = local.host_list_ssm_name
+  name  = local.site_name_ssm_name
   type  = "String"
   value = "${local.name_prefix}-taco-wagon"
 }
@@ -19,7 +19,6 @@ resource "aws_ssm_parameter" "site-name" {
 data "aws_iam_policy_document" "ssm_access" {
   statement {
     effect    = "Allow"
-
     actions   = ["ssm:GetParameter"]
     resources = [aws_ssm_parameter.host-list.arn, aws_ssm_parameter.site-name.arn]
   }
