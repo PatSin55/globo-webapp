@@ -18,7 +18,7 @@ resource "aws_ssm_parameter" "site-name" {
 
 data "aws_iam_policy_document" "ssm_access" {
   statement {
-    effect    = "Allow"
+    effect = "Allow"
 
     actions   = ["ssm:GetParameter"]
     resources = [aws_ssm_parameter.host-list.arn, aws_ssm_parameter.site-name.arn]
